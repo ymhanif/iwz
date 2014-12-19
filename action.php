@@ -108,7 +108,7 @@
 		$response = array();
 		$response["events"] = array();
 
-		$result = mysql_query("SELECT * FROM events");
+		$result = mysql_query("SELECT * FROM iwuzhiersom_events");
 
 		while($row = mysql_fetch_array($result)){
 			//temporary array to create single category
