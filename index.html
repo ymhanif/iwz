@@ -1,0 +1,116 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="assets/img/icon-01.png" rel="icon" />
+    <title>IWuzHereSom Events</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/modern-business.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-app="" ng-controller="eventsController">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class='navbar-brand' href='index.html'>IWuzHereSom</a>";                
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Welcome to IWuzHereSom Event Management
+                </h1>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Search for Events: 
+                <input type="text" ng-model="search">
+            </div>
+
+            <!-- Collapsible -->
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default" ng-repeat="x in events.events | filter:search" >
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#{{x.event_id}}" aria-expanded="true" aria-controls="collapseOne">
+                                {{x.name}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="{{x.event_id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body" class="col-md-6">
+                            <p class="glyphicon glyphicon-user" > Organizer: {{x.organizer}}</p></br>
+                            <p class="glyphicon glyphicon-map-marker" > Venue: {{x.venue}}</p></br>  
+                            <p class="glyphicon glyphicon-calendar" > Date: {{x.date}}</p></br>
+                            <p class="glyphicon glyphicon-time" > Time: {{x.time}}</p></br>
+                            <!-- <p class="glyphicon glyphicon-edit" id="register"><a href="iregister.php?id={{x.event_id}}"> Register</a></p></br>   -->
+                            <p class="glyphicon glyphicon-earphone"><a href="tel:{{x.staff_phone}}"> {{x.staff_phone}}</a></p></br>
+                            <!-- <button id="{{x.event_id}}" onclick="register(this.id)" class=" glyphicon glyphicon-edit btn btn-success btn-lg" value="{{x.name}}"> Register</button -->>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+            
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; @i_Archive 2014</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src="assets/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- AngularJS Script -->
+    <script src="assets/scripts/angular.min.js"></script>
+
+
+    
+    <script>
+        function eventsController($scope, $http){
+            $http.get("action.php?getevents").success(function(response) {$scope.events = response;});
+        }
+    </script>
+
+    <script type="text/javascript">
+        function register(id){
+            var x = document.getElementById(id).value;
+            alert(id);
+        }
+
+    </script>
+
+</body>
+</html>
